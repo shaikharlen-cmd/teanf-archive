@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEANF Archive</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <main>
+
+       <h1>TEANF Archive</h1>
+
+        <p id="access-date"></p>
+
+        <nav>
+
+            <a href="archive.html">Archive</a>
+
+            <a href="radio.html">Radio</a>
+
+            <a href="releases.html">Releases</a>
+
+            <a href="catalog.html">Catalog</a>
+            
+            <a href="media.html">Media</a>
+
+            <a href="about.html">About</a>
+
+        </nav>
+
+<footer>
+    <p>
+        Ongoing archive documenting music, radio, publishing, photography,
+        and related projects.
+    </p>
+
+    <p class="metadata rec-accent">
+        beta 0.1.0
+        Established 2021.
+    </p>
+</footer>
+
+    </main>
+
+    <script>
+const now = new Date();
+
+const formattedDate = now.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric"
+});
+
+const formattedTime = now.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit"
+});
+
+const timezone = Intl.DateTimeFormat("en-US", {
+    timeZoneName: "short"
+})
+.formatToParts(now)
+.find(part => part.type === "timeZoneName")
+.value;
+
+document.getElementById("access-date").textContent =
+    `Accessed ${formattedDate} — ${formattedTime} ${timezone}`;
+</script>
+</body>
+</html>
