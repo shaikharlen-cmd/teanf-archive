@@ -216,3 +216,9 @@ margin-top: 80px;
 .release-accent   { color: #7c8d9d; } /* slate blue */
 .pub-accent   { color: #b59c6a; } /* paper gold */
 .arch-accent  { color: #4f4a44; } /* charcoal */
+
+.redirect {
+    margin-top: 30px;
+    font-size: 0.8rem;
+    opacity: 0.55;
+}
