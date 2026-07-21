@@ -13,6 +13,31 @@ main {
     max-width: 700px;
 }
 
+.home main {
+
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+}
+
+.home-content{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:120px;
+}
+
+.home-left{
+    display:flex;
+    flex-direction:column;
+    min-height:75vh;
+}
+
+.home-left footer{
+    margin-top:auto;
+}
+
 h1 {
     font-size: 3rem;
     font-weight: normal;
@@ -40,7 +65,6 @@ a:hover {
 }
 
 footer {
-    margin-top: 120px;
     max-width: 400px;
 }
 
@@ -221,4 +245,71 @@ margin-top: 80px;
     margin-top: 30px;
     font-size: 0.8rem;
     opacity: 0.55;
+}
+
+.archive-quote {
+    margin: 0;
+    padding-left: 18px;
+    border-left: 1px solid rgba(0,0,0,.15);
+    font-size: .9rem;
+    line-height: 1.8;
+    color: rgba(0,0,0,.72);
+    font-style: italic;
+}
+
+.random-record {
+    width: 300px;
+    flex-shrink: 0;
+    margin-top: 200px; /* adjust until it lines up with "Archive" */
+}
+
+.random-record img {
+
+    width: 100%;
+
+    display: block;
+
+    height: auto;
+
+}
+
+#random-path {
+
+    margin-top: 10px;
+
+    font-size: .8rem;
+
+    font-family: monospace;
+
+    color: #777;
+
+    line-height: 1.4;
+
+    overflow-wrap: anywhere;
+
+}
+
+
+@media (max-width: 800px) {
+
+    .home-content {
+
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+
+    }
+
+}
+
+.random-record:hover img {
+
+    opacity: .9;
+
+}
+
+.random-record:hover #random-path {
+
+    text-decoration: underline;
+
 }

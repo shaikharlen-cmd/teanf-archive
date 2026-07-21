@@ -11,43 +11,55 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body class="home">
 
-    <main>
+<main>
 
-       <h1>TEANF Archive</h1>
+<div class="home-content">
+
+    <div class="home-left">
+
+        <h1>TEANF Archive</h1>
 
         <p id="access-date"></p>
 
         <nav>
 
             <a href="archive.html">Archive</a>
-
             <a href="radio.html">Radio</a>
-
             <a href="releases.html">Releases</a>
-
             <a href="catalog.html">Catalog</a>
-            
             <a href="media.html">Media</a>
-
             <a href="about.html">About</a>
 
         </nav>
 
-<footer>
-    <p>
-        Ongoing archive documenting music, radio, publishing, photography,
-        and related projects.
-    </p>
+        <footer>
 
-    <p class="metadata rec-accent">
-        beta 0.1.1
-        Established 2021.
-    </p>
-</footer>
+            <p>
+                Ongoing archive documenting music, radio,
+                publishing, photography, and related projects.
+            </p>
 
-    </main>
+            <p class="metadata rec-accent">
+                beta 0.1.2 Established 2021.
+            </p>
+
+        </footer>
+
+    </div>
+
+    <a id="random-link" class="random-record">
+
+        <img id="random-image">
+
+        <p id="random-path"></p>
+
+    </a>
+
+</div>
+
+</main>
 
     <script>
 const now = new Date();
@@ -73,5 +85,6 @@ const timezone = Intl.DateTimeFormat("en-US", {
 document.getElementById("access-date").textContent =
     `Accessed ${formattedDate} — ${formattedTime} ${timezone}`;
 </script>
+<script src="/js/random-image.js"></script>
 </body>
 </html>
