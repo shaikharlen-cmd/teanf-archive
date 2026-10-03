@@ -1,9 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap');
 
+:root {
+    --paper: #e8e8e2;
+    --ink: #171a22;
+    --muted: #625f5a;
+    --main-accent: #FF5C00;
+    --accent-text: #a83c00;
+    --blue: #2457a6;
+    --teal: #23616c;
+    --gold: #8c620f;
+    --charcoal: #514b44;
+}
+
 body {
     margin: 0;
-    background: #e6e9eb;
-    color: #10161d;
+    background: var(--paper);
+    color: var(--ink);
     font-family: "IBM Plex Sans", sans-serif;
 }
 
@@ -16,7 +28,7 @@ main {
 .home main {
 
     max-width: 1400px;
-
+    padding-top: 15px;
     margin: 0 auto;
 
 }
@@ -38,6 +50,12 @@ main {
     margin-top:auto;
 }
 
+.home h1 {
+    font-family: "blonde-fraktur", serif;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0.08em;
+}
 h1 {
     font-size: 3rem;
     font-weight: normal;
@@ -52,11 +70,10 @@ nav {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    margin-bottom: 30px;
 }
 
-a:hover {
-    opacity: 0.5;
-}
+a:hover { opacity: 0.8; }
 
 #access-date {
     font-size: 0.75rem;
@@ -77,18 +94,21 @@ footer p {
 .meta,
 .metadata,
 #access-date {
-    color: #8293a1;
+    color: var(--muted);
     font-family: monospace;
     font-size: 0.7rem;
     letter-spacing: 0.08em;
     opacity: 0.65;
 }
 
-.metadata2,
-#access-date {
-color: #9b5a52;
+.metadata2 {
+    color: var(--gold);
     font-family: monospace;
     letter-spacing: 0.1em;
+}
+
+#access-date {
+    color: var(--accent-text);
 }
 
 .meta2 {
@@ -97,14 +117,12 @@ color: #9b5a52;
 }
 
 a {
-color: #5e7282;
+    color: var(--blue);
     text-decoration: none;
-    transition: opacity 0.2s ease;
+    transition: color 0.2s ease, opacity 0.2s ease;
 }
 
-a:hover {
-    color: #6f8396;
-}
+a:hover { color: var(--accent-text); opacity: 1; }
 
 .archive-years {
     display: flex;
@@ -198,7 +216,7 @@ margin-top: 80px;
 }
 
 .track-time {
-    color: #7b8883;
+    color: var(--muted);
     font-size: 0.75rem;
     letter-spacing: 0.04em;
     margin-left: 12px;
@@ -235,11 +253,11 @@ margin-top: 80px;
     margin-bottom: 32px;
 }
 
-.rec-accent   { color: #9b5a52; } /* faded red */
-.radio-accent { color: #87907d; } /* sage */
-.release-accent   { color: #7c8d9d; } /* slate blue */
-.pub-accent   { color: #b59c6a; } /* paper gold */
-.arch-accent  { color: #4f4a44; } /* charcoal */
+.rec-accent   { color: var(--accent-text); } /* orange */
+.radio-accent { color: var(--teal); } /* deep teal */
+.release-accent   { color: var(--blue); } /* cobalt */
+.pub-accent   { color: var(--gold); } /* ochre */
+.arch-accent  { color: var(--charcoal); } /* charcoal */
 
 .redirect {
     margin-top: 30px;
@@ -260,7 +278,7 @@ margin-top: 80px;
 .random-record {
     width: 300px;
     flex-shrink: 0;
-    margin-top: 200px; /* adjust until it lines up with "Archive" */
+    margin-top: 165px;
 }
 
 .random-record img {
@@ -281,7 +299,7 @@ margin-top: 80px;
 
     font-family: monospace;
 
-    color: #777;
+    color: var(--muted);
 
     line-height: 1.4;
 
@@ -290,18 +308,60 @@ margin-top: 80px;
 }
 
 
+
 @media (max-width: 800px) {
-
     .home-content {
-
-        grid-template-columns: 1fr;
-
+        flex-direction: column;
         gap: 40px;
-
     }
 
+    .random-record {
+        width: min(100%, 420px);
+        margin-top: 0;
+    }
 }
 
+
+
+.random-record-link {
+    display: block;
+}
+
+#another-record {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    padding: 10px 13px;
+    border: 1px solid var(--ink);
+    background: transparent;
+    color: var(--ink);
+    font-family: monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 var(--main-accent);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+#another-record:hover {
+    background: var(--main-accent);
+    color: var(--ink);
+    opacity: 1;
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--ink);
+}
+
+#another-record:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 var(--ink);
+}
+
+#another-record:focus-visible {
+    outline: 2px solid var(--main-accent);
+    outline-offset: 4px;
+}
 .random-record:hover img {
 
     opacity: .9;

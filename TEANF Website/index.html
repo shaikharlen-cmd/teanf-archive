@@ -6,85 +6,152 @@
     <title>TEANF Archive</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://use.typekit.net/mwt4loe.css">
 
-<link rel="stylesheet" href="css/style.css">
+    <style>
+        .random-record-link {
+            display: block;
+        }
+
+        #another-record {
+            margin-top: 14px;
+            padding: 9px 12px;
+            border: 1px solid rgba(16, 22, 29, 0.2);
+            background: transparent;
+            color: #5e7282;
+            font: inherit;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        #another-record:hover {
+            background: rgba(255, 255, 255, 0.45);
+            border-color: rgba(16, 22, 29, 0.4);
+        }
+
+        #another-record:focus-visible {
+            outline: 2px solid #5e7282;
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 800px) {
+            .home-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .random-record {
+                width: min(100%, 420px);
+                margin-top: 0;
+            }
+        }
+    </style>
 </head>
 
 <body class="home">
 
 <main>
+    <div class="home-content">
+        <div class="home-left">
+            <h1>TEANF Archive</h1>
 
-<div class="home-content">
+            <p id="access-date"></p>
+            <nav>
+                <a href="archive.html">Archive</a>
+                <a href="radio.html">Radio</a>
+                <a href="releases.html">Releases</a>
+                <a href="catalog.html">Catalog</a>
+                <a href="media.html">Media</a>
+                <a href="404.html">Oct. 23rd RSVP</a>
+                <a href="about.html">About</a>
+            </nav>
 
-    <div class="home-left">
+            <footer>
+                <p>
+                    Ongoing archive documenting music, radio,
+                    publishing, photography, and related projects.
+                </p>
 
-        <h1>TEANF Archive</h1>
+                <p class="metadata rec-accent">
+                    beta 0.1.4 Established 2021.
+                </p>
+            </footer>
+        </div>
 
-        <p id="access-date"></p>
+        <div class="random-record">
+            <a id="random-link" class="random-record-link">
+                <img id="random-image" alt="">
+                <p id="random-path" aria-live="polite"></p>
+            </a>
 
-        <nav>
-
-            <a href="archive.html">Archive</a>
-            <a href="radio.html">Radio</a>
-            <a href="releases.html">Releases</a>
-            <a href="catalog.html">Catalog</a>
-            <a href="media.html">Media</a>
-            <a href="about.html">About</a>
-
-        </nav>
-
-        <footer>
-
-            <p>
-                Ongoing archive documenting music, radio,
-                publishing, photography, and related projects.
-            </p>
-
-            <p class="metadata rec-accent">
-                beta 0.1.2 Established 2021.
-            </p>
-
-        </footer>
-
+            <button
+                id="another-record"
+                type="button"
+                aria-controls="random-image random-path">
+                Show me another <span aria-hidden="true">↻</span>
+            </button>
+        </div>
     </div>
-
-    <a id="random-link" class="random-record">
-
-        <img id="random-image">
-
-        <p id="random-path"></p>
-
-    </a>
-
-</div>
-
 </main>
 
-    <script>
-const now = new Date();
+<script>
+    const now = new Date();
 
-const formattedDate = now.toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric"
-});
+    const formattedDate = now.toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+    });
 
-const formattedTime = now.toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "2-digit"
-});
+    const formattedTime = now.toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "2-digit"
+    });
 
-const timezone = Intl.DateTimeFormat("en-US", {
-    timeZoneName: "short"
-})
-.formatToParts(now)
-.find(part => part.type === "timeZoneName")
-.value;
+    const timezone = Intl.DateTimeFormat("en-US", {
+        timeZoneName: "short"
+    })
+        .formatToParts(now)
+        .find(part => part.type === "timeZoneName")
+        .value;
 
-document.getElementById("access-date").textContent =
-    `Accessed ${formattedDate} — ${formattedTime} ${timezone}`;
+    document.getElementById("access-date").textContent =
+        `Accessed ${formattedDate} — ${formattedTime} ${timezone}`;
 </script>
+
 <script src="/js/random-image.js"></script>
+
+<script>
+    const anotherButton = document.getElementById("another-record");
+    const randomLink = document.getElementById("random-link");
+    const randomImage = document.getElementById("random-image");
+    const randomPath = document.getElementById("random-path");
+
+    let currentRecordIndex = records.findIndex(
+        record => record.image === randomImage.getAttribute("src")
+    );
+
+    anotherButton.addEventListener("click", () => {
+        if (records.length === 0) return;
+
+        let nextRecordIndex = Math.floor(Math.random() * records.length);
+
+        while (records.length > 1 && nextRecordIndex === currentRecordIndex) {
+            nextRecordIndex = Math.floor(Math.random() * records.length);
+        }
+
+        currentRecordIndex = nextRecordIndex;
+
+        const record = records[currentRecordIndex];
+        randomLink.href = record.page;
+        randomImage.src = record.image;
+        randomImage.alt = record.path;
+        randomPath.textContent = record.path;
+    });
+</script>
+
 </body>
 </html>
